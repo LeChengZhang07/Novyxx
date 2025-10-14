@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novyxx - Agencia de Automatización con IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-start: #0f172a;
+            --gradient-mid: #1e40af;
+            --gradient-end: #0c4a6e;
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --primary-dark: #2563eb;
+            --accent: #818cf8;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-hover: rgba(30, 41, 59, 0.8);
+            --border-color: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .logo:hover::after {
+            opacity: 1;
+        }
+
+        nav a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            margin-left: 32px;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 16px;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px -5px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 64px;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 24px;
+            width: 80px;
+            height: 80px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-tertiary);
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about-section {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto 64px;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .schedule-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .schedule-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .schedule-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .reviews-header p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .rating-system {
+            margin-bottom: 48px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .rating-system h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .rating-system p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .star {
+            font-size: 40px;
+            color: #64748b;
+            cursor: pointer;
+            transition: var(--transition);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .star:hover,
+        .star.active {
+            color: var(--warning);
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+
+        .review-form {
+            margin-top: 24px;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.5);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 120px;
+            transition: var(--transition);
+        }
+
+        .review-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .review-form button {
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .review-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 16px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .review-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .review-info .date {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 4px;
+            margin: 8px 0;
+        }
+
+        .review-stars i {
+            font-size: 16px;
+            color: var(--warning);
+        }
+
+        .review-content {
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .view-all {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 18px;
+            gap: 8px;
+        }
+
+        .view-all:hover {
+            color: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            gap: 16px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary);
+            min-width: 24px;
+            width: 24px;
+            height: 24px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .contact-info a,
+        .contact-info p {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-light);
+        }
+
+        .ceo-card {
+            text-align: center;
+        }
+
+        .ceo-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .ceo-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .ceo-card p {
+            color: var(--text-tertiary);
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(51, 65, 85, 0.3);
+            padding: 40px 0 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-nav button {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-nav button::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-nav button:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-nav button:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: var(--text-tertiary);
+            text-align: center;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 32px;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body {
+            padding: 28px 32px;
+            overflow-y: auto;
+            max-height: calc(90vh - 160px);
+        }
+
+        .modal-body h3 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .modal-body h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 20px 0 12px;
+            color: var(--text-primary);
+        }
+
+        .modal-body p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .modal-body ul {
+            color: var(--text-secondary);
+            padding-left: 28px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .modal-body li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .empty-reviews {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-secondary);
+        }
+
+        .empty-reviews p {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.25rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav a {
+                margin-left: 0;
+                margin-right: 20px;
+                font-size: 14px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 2.25rem;
+            }
+            
+            .section-title::after {
+                width: 60px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stars {
+                gap: 8px;
+            }
+            
+            .star {
+                font-size: 32px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Novyxx</div>
+                <nav>
+                    <a href="#services">Servicios</a>
+                    <a href="#about">Sobre Nosotros</a>
+                    <a href="#contact">Contacto</a>
+                    <button onclick="openModal('reviews')" class="btn btn-secondary">
+                        <i class="fas fa-star"></i>
+                        Reseñas
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Automatización con IA</h1>
+            <p>Transformamos tu negocio con soluciones de inteligencia artificial avanzadas. Fundada por LeCheng Zhang.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Contactar Ahora
+                </a>
+                <button onclick="openModal('reviews')" class="btn btn-secondary">
+                    <i class="fas fa-star"></i>
+                    Ver Reseñas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automatización de Procesos</h3>
+                    <p>Optimizamos tus flujos de trabajo con IA para aumentar la eficiencia y reducir costos operativos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Integración de Sistemas</h3>
+                    <p>Conectamos tus herramientas existentes con soluciones de IA para crear un ecosistema coherente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Asistencia técnica continua para garantizar que tus automatizaciones funcionen sin interrupciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Sobre Novyxx</h2>
+                <p>Fundada por LeCheng Zhang, Novyxx es una agencia especializada en automatización empresarial mediante inteligencia artificial. Nuestra misión es democratizar el acceso a tecnologías avanzadas de IA para empresas de todos los tamaños.</p>
+                <div class="schedule-card">
+                    <h3>Horario de Atención</h3>
+                    <p>09:00 - 23:00 (Hora Española)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="reviews-header">
+                <h2 class="section-title">Valoraciones de Clientes</h2>
+                <p>Tu opinión es muy importante para nosotros</p>
+                
+                <div class="rating-system">
+                    <h3>Deja tu valoración</h3>
+                    <p>¿Cómo calificarías a Novyxx?</p>
+                    <div class="stars">
+                        <span class="star" onclick="handleRating(1)" onmouseover="setHoverRating(1)" onmouseout="clearHoverRating()"><i class="far fa-star"></i></span>
+                        <span class="star" onclick="handleRating(2)" onmouseover="setHoverRating(2)" onmouseout="clearHoverRating()"><i class="far fa-star"></i></span>
+                        <span class="star" onclick="handleRating(3)" onmouseover="setHoverRating(3)" onmouseout="clearHoverRating()"><i class="far fa-star"></i></span>
+                        <span class="star" onclick="handleRating(4)" onmouseover="setHoverRating(4)" onmouseout="clearHoverRating()"><i class="far fa-star"></i></span>
+                        <span class="star" onclick="handleRating(5)" onmouseover="setHoverRating(5)" onmouseout="clearHoverRating()"><i class="far fa-star"></i></span>
+                    </div>
+                    <div class="review-form">
+                        <textarea id="reviewText" placeholder="Escribe tu opinión sobre Novyxx..."></textarea>
+                        <button onclick="submitReview()">Enviar Valoración</button>
+                    </div>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">?</div>
+                            <div class="review-info">
+                                <h4></h4>
+                                <div class="review-stars">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">?</div>
+                            <div class="review-info">
+                                <h4></h4>
+                                <div class="review-stars">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">?</div>
+                            <div class="review-info">
+                                <h4></h4>
+                                <div class="review-stars">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" onclick="openModal('allReviews'); return false;" class="view-all">
+                    Ver todas las reseñas
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Contacto</h2>
+                <p>Estamos aquí para ayudarte a transformar tu negocio</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <a href="mailto:contact.lechengzhang@gmail.com">contact.lechengzhang@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>WhatsApp</h3>
+                            <a href="https://wa.me/34665592840">+34 665 59 28 40</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Horario</h3>
+                            <p>09:00 - 23:00 (Hora Española)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card ceo-card">
+                    <h3>CEO</h3>
+                    <div class="ceo-avatar">LZ</div>
+                    <h4>LeCheng Zhang</h4>
+                    <p>Fundador y CEO de Novyxx</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Novyxx</div>
+                <div class="footer-nav">
+                    <button onclick="openModal('privacy')">Política de Privacidad</button>
+                    <button onclick="openModal('terms')">Términos y Condiciones</button>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Novyxx. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Política de Privacidad</h2>
+                <button class="close-modal" onclick="closeModal('privacyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Política de Privacidad</h3>
+                <p><strong>Última actualización:</strong> 14 de octubre de 2025</p>
+                
+                <h4>1. Información que recopilamos</h4>
+                <p>Recopilamos información personal que usted nos proporciona directamente, como su nombre, dirección de correo electrónico, número de teléfono y cualquier otra información que proporcione al contactarnos o utilizar nuestros servicios.</p>
+                
+                <h4>2. Cómo utilizamos su información</h4>
+                <p>Utilizamos su información personal para:</p>
+                <ul>
+                    <li>Proporcionar y mejorar nuestros servicios de automatización con IA</li>
+                    <li>Responder a sus consultas y solicitudes</li>
+                    <li>Enviarle actualizaciones sobre nuestros servicios (con su consentimiento)</li>
+                    <li>Cumplir con nuestras obligaciones legales</li>
+                </ul>
+                
+                <h4>3. Compartir su información</h4>
+                <p>No compartimos su información personal con terceros, excepto cuando sea necesario para proporcionar nuestros servicios o cuando lo requiera la ley.</p>
+                
+                <h4>4. Seguridad de los datos</h4>
+                <p>Implementamos medidas de seguridad técnicas y organizativas adecuadas para proteger su información personal contra el acceso no autorizado, la alteración, la divulgación o la destrucción.</p>
+                
+                <h4>5. Sus derechos</h4>
+                <p>Tiene derecho a acceder, rectificar, eliminar y portar sus datos personales. También puede retirar su consentimiento en cualquier momento.</p>
+                
+                <h4>6. Cambios en esta política</h4>
+                <p>Podemos actualizar esta política de privacidad periódicamente. Publicaremos cualquier cambio en esta página con la fecha de actualización correspondiente.</p>
+                
+                <h4>7. Contacto</h4>
+                <p>Si tiene alguna pregunta sobre esta política de privacidad, puede contactarnos en: contact.lechengzhang@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Términos y Condiciones</h2>
+                <button class="close-modal" onclick="closeModal('termsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Términos y Condiciones</h3>
+                
+                <h4>1. Aceptación de términos</h4>
+                <p>Al utilizar nuestros servicios de automatización con IA, usted acepta estos términos y condiciones en su totalidad. Si no está de acuerdo con alguno de estos términos, no debe utilizar nuestros servicios.</p>
+                
+                <h4>2. Descripción de servicios</h4>
+                <p>Novyxx ofrece servicios de automatización empresarial utilizando inteligencia artificial. Los servicios específicos se detallarán en acuerdos separados entre las partes.</p>
+                
+                <h4>3. Responsabilidades del cliente</h4>
+                <p>El cliente se compromete a:</p>
+                <ul>
+                    <li>Proporcionar información precisa y completa</li>
+                    <li>Mantener la confidencialidad de las credenciales de acceso</li>
+                    <li>Utilizar los servicios de acuerdo con la ley aplicable</li>
+                    <li>Pagar los servicios según lo acordado</li>
+                </ul>
+                
+                <h4>4. Propiedad intelectual</h4>
+                <p>Todos los derechos de propiedad intelectual relacionados con los servicios de Novyxx pertenecen a Novyxx, salvo disposición contraria en un acuerdo escrito.</p>
+                
+                <h4>5. Limitación de responsabilidad</h4>
+                <p>Novyxx no será responsable de daños indirectos, incidentales o consecuentes que surjan del uso de nuestros servicios, salvo en casos de dolo o negligencia grave.</p>
+                
+                <h4>6. Modificaciones</h4>
+                <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en nuestro sitio web.</p>
+                
+                <h4>7. Ley aplicable</h4>
+                <p>Estos términos se regirán e interpretarán de acuerdo con las leyes de España, sin tener en cuenta sus principios de conflicto de leyes.</p>
+                
+                <h4>8. Contacto</h4>
+                <p>Para cualquier consulta sobre estos términos, puede contactarnos en: contact.lechengzhang@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Reviews Modal -->
+    <div id="allReviewsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Todas las Reseñas</h2>
+                <button class="close-modal" onclick="closeModal('allReviewsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="empty-reviews">
+                    <p style="font-size: 1.25rem; margin-bottom: 16px;">Actualmente no hay reseñas disponibles.</p>
+                    <p>¿Te gustaría ser el primero en dejar una reseña?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Modal (same as All Reviews) -->
+    <div id="reviewsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Reseñas</h2>
+                <button class="close-modal" onclick="closeModal('reviewsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="empty-reviews">
+                    <p style="font-size: 1.25rem; margin-bottom: 16px;">Actualmente no hay reseñas disponibles.</p>
+                    <p>¿Te gustaría ser el primero en dejar una reseña?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Modal Functions
+        function openModal(modalType) {
+            const modalMap = {
+                'privacy': 'privacyModal',
+                'terms': 'termsModal',
+                'allReviews': 'allReviewsModal',
+                'reviews': 'reviewsModal'
+            };
+            const modalId = modalMap[modalType];
+            if (modalId) {
+                document.getElementById(modalId).classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = ['privacyModal', 'termsModal', 'allReviewsModal', 'reviewsModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+
+        // Rating System
+        let currentRating = 0;
+        let hoverRating = 0;
+
+        function setHoverRating(rating) {
+            hoverRating = rating;
+            updateStars();
+        }
+
+        function clearHoverRating() {
+            hoverRating = 0;
+            updateStars();
+        }
+
+        function handleRating(rating) {
+            currentRating = rating;
+            updateStars();
+        }
+
+        function updateStars() {
+            const stars = document.querySelectorAll('.star');
+            const displayRating = hoverRating || currentRating;
+            
+            stars.forEach((star, index) => {
+                const icon = star.querySelector('i');
+                if (index + 1 <= displayRating) {
+                    icon.className = 'fas fa-star';
+                    star.classList.add('active');
+                } else if (index + 1 === displayRating + 0.5) {
+                    icon.className = 'fas fa-star-half-alt';
+                    star.classList.add('active');
+                } else {
+                    icon.className = 'far fa-star';
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function submitReview() {
+            const rating = currentRating;
+            const reviewText = document.getElementById('reviewText').value;
+            
+            if (rating === 0) {
+                alert('Por favor, selecciona una puntuación.');
+                return;
+            }
+            
+            if (!reviewText.trim()) {
+                alert('Por favor, escribe tu opinión.');
+                return;
+            }
+            
+            alert('¡Gracias por tu valoración! Tu reseña ha sido enviada.');
+            currentRating = 0;
+            document.getElementById('reviewText').value = '';
+            updateStars();
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize stars
+        updateStars();
+    </script>
+</body>
+</html>
