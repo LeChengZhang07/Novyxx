@@ -752,24 +752,29 @@
                 justify-content: center;
             }
         }
-        /* FIX: Visibilidad del título en móviles */
-        @media (max-width: 480px) {
-        .hero {
-        padding-top: 11rem !important; /* más espacio para que no lo tape el header */
-        padding-bottom: 4rem;
-       }
+        /* ==== FIX VISIBILIDAD EN MÓVIL ==== */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Asegura que quede detrás del texto */
+}
 
-        .hero h1 {
-        font-size: 2.1rem !important;
-        line-height: 1.25 !important;
-        word-break: break-word;
-        }
+.hero-content, 
+.hero, 
+header {
+  position: relative;
+  z-index: 2; /* Mantiene texto y header encima del canvas */
+}
 
-        .hero-content {
-        transform: none !important;
-        opacity: 1 !important;
-        }
-        }
+@media (max-width: 768px) {
+  #webgl-canvas {
+    height: 100vh;
+  }
+}
+
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -787,3 +792,36 @@
             background: var(--accent);
 
         }
+        /* =======================
+        CONFIGURACIÓN DE COOKIES
+        ======================= */
+        .cookie-preferences {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .cookie-preferences h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .cookie-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }   
+
+        .cookie-option input {
+            transform: scale(1.2);
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
