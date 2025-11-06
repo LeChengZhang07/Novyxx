@@ -1,33 +1,81 @@
 # 🌐 Novyxx — Agencia de Automatización con Inteligencia Artificial
 
-Sitio web oficial de **Novyxx**, una agencia y escuela especializada en automatización de procesos empresariales mediante inteligencia artificial.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/00000000-0000-0000-0000-000000000000/deploy-status)](https://app.netlify.com/sites/tu-sitio/deploys)  
+*Sitio web oficial de Novyxx — Transformando empresas mediante inteligencia artificial ética, eficiente y accesible.*
 
-## 🚀 Características
+---
 
-- Diseño moderno con efectos 3D en tiempo real (Three.js)
-- Animaciones suaves y scroll interactivo (GSAP + ScrollTrigger)
-- Totalmente responsive y optimizado para móviles
-- Cumple con normativas legales: RGPD, política de cookies, aviso legal, etc.
-- Listo para desplegar en Netlify, Vercel o cualquier hosting estático
+## 🎯 Propósito
 
-## 🛠️ Tecnologías usadas
+Este repositorio contiene el **sitio web institucional estático** de **Novyxx**, una agencia y escuela especializada en:
 
-- **HTML5**, **CSS3**, **JavaScript (ES6+)**
-- [Three.js](https://threejs.org/) – Escena 3D interactiva con partículas
-- [GSAP](https://greensock.com/gsap/) – Animaciones y scroll suave
-- [Font Awesome](https://fontawesome.com/) – Íconos
-- [Google Fonts](https://fonts.google.com/) – Tipografía Inter
-- CDN para todas las librerías externas (sin dependencias locales)
+- Automatización de procesos empresariales con IA
+- Consultoría en implementación responsable de inteligencia artificial
+- Formación técnica y estratégica en herramientas de IA
 
-## ▶️ Cómo ejecutar localmente
+El sitio está diseñado para comunicar claramente el valor, la visión y los servicios de la marca, cumpliendo con normativas europeas de privacidad y accesibilidad.
 
-> ⚠️ **Importante**: No abras `index.html` con doble clic. Usa un servidor HTTP local.
+---
 
-### Opción recomendada: VS Code + Live Server
-1. Instala la extensión **[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)** en VS Code.
-2. Abre la carpeta del proyecto en VS Code.
-3. Haz clic derecho en `index.html` → **"Open with Live Server"**.
+## 🛠️ Características Técnicas
 
-### Opción alternativa: Servidor local con Node.js
-```bash
-npx serve
+### ✅ Rendimiento y Experiencia de Usuario
+- **Single-page application (SPA) estática** sin dependencias de frameworks
+- **Animaciones fluidas** con [GSAP](https://greensock.com/gsap/) y ScrollTrigger
+- **Efectos 3D en tiempo real** con [Three.js](https://threejs.org/)
+- **Diseño responsive** optimizado para móvil, tablet y escritorio
+- **Carga diferida implícita** (sin JS pesado innecesario)
+- **Sin build required** — listo para desplegar tal cual
+
+### 📱 Accesibilidad y UX
+- Navegación por teclado (soporte `ESC` para cerrar modales)
+- Etiquetas ARIA en modales legales
+- Colores con suficiente contraste (WCAG compliant)
+- Texto legible con tipografía sistemática (`Inter`)
+
+### 🛡️ Cumplimiento Legal (RGPD/LOPDGDD)
+- Política de cookies con gestión activa de consentimiento
+- Modales para:  
+  - Aviso Legal  
+  - Política de Privacidad  
+  - Términos y Condiciones  
+  - Uso Ético de la IA  
+- Almacenamiento de preferencias en `localStorage`
+- Sin cookies de terceros sin consentimiento explícito
+
+### 🌍 SEO y Buenas Prácticas
+- Metadatos SEO completos (`description`, `keywords`, `og:title` implícito)
+- Estructura semántica HTML5 (`<header>`, `<section>`, `<footer>`)
+- Títulos jerárquicos correctos (`h1` → `h2` → `h3`)
+- Enlaces internos anclados con scroll suave
+
+---
+
+## 📦 Tecnologías Utilizadas
+
+| Capa | Tecnología |
+|------|-----------|
+| **Markup** | HTML5 |
+| **Estilos** | CSS3 puro (sin preprocesadores), variables CSS, `@import` para fuentes |
+| **Interactividad** | JavaScript Vanilla (ES6+) |
+| **Animaciones** | GSAP 3 + ScrollTrigger + ScrollToPlugin |
+| **3D / WebGL** | Three.js r128 |
+| **Fuentes** | Google Fonts (`Inter`) |
+| **Íconos** | Font Awesome 6.5 |
+| **Hosting** | Netlify (optimizado para sitios estáticos) |
+
+> ⚠️ **Sin frameworks pesados** (React, Vue, etc.) → carga instantánea y rendimiento óptimo.
+
+---
+
+## ▶️ Instrucciones de Desarrollo
+
+### Requisitos previos
+- Editor de código (recomendado: [VS Code](https://code.visualstudio.com/))
+- Extensión **[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)**
+
+### Ejecución local
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/novyxx-web.git
+   cd novyxx-web
