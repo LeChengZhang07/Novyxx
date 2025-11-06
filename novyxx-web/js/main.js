@@ -218,64 +218,13 @@ let scene, camera, renderer, particles = [];
                 document.body.style.overflow = 'auto';
             }
         }
-        function showCookieBanner() {
-            const banner = document.querySelector('.cookie-banner');
-            banner.style.display = 'flex';
-            gsap.to(banner, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
-        }
 
         window.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 closeModal(event.target.id);
             }
         });
-        function acceptCookies() {
-            try {
-                localStorage.setItem(
-                    'novyxx_cookie_consent',
-                    JSON.stringify({ analytics: true, marketing: true, timestamp: Date.now() })
-                );
-            } catch(e) {
-                console.warn('LocalStorage not available');
-            }
-            document.getElementById('cookieBanner').style.display = 'none';
-        }
-        function rejectCookies() {
-            try {
-                localStorage.setItem(
-                    'novyxx_cookie_consent',
-                    JSON.stringify({ analytics: false, marketing: false, timestamp: Date.now() })
-                );
-            } catch(e) {
-                console.warn('LocalStorage not available');
-            }
-            document.getElementById('cookieBanner').style.display = 'none';
-        }
-        function initCookieBanner() {
-            try {
-                const consent = localStorage.getItem('novyxx_cookie_consent');
-                if (!consent) {
-                    document.getElementById('cookieBanner').style.display = 'flex';
-                    gsap.to('#cookieBanner', {
-                        duration: 0.8,
-                        y: 0,
-                        opacity: 1,
-                        delay: 1.4,
-                        ease: "power2.out"
-                    });
-                }
-            } catch(e) {
-                console.warn('LocalStorage not available, showing cookie banner');
-                document.getElementById('cookieBanner').style.display = 'flex';
-                gsap.to('#cookieBanner', {
-                    duration: 0.8,
-                    y: 0,
-                    opacity: 1,
-                    delay: 1.4,
-                    ease: "power2.out"
-                });
-            }
-        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             initWebGL();
             initScrollAnimations();
@@ -292,29 +241,6 @@ let scene, camera, renderer, particles = [];
             });
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
-        const cookieButtons = document.querySelectorAll('[onclick="showCookieBanner()"]');
-
-        cookieButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const banner = document.getElementById('cookieBanner');
-                if (!banner) return;
-                banner.style.display = 'flex';
-                banner.style.opacity = '1';
-                banner.style.transform = 'translateY(0)';
-                try {
-                    gsap.fromTo(
-                        banner,
-                        { y: 50, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-                    );
-                    } catch {
-                    console.warn('GSAP no disponible, banner mostrado sin animación');
-                    }
-                });
-            });
-        });
                 // =========================
         // GESTIÓN DE COOKIES EN POLÍTICA
         // =========================
