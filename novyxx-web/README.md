@@ -1,6 +1,5 @@
 # 🌐 Novyxx — Agencia de Automatización con Inteligencia Artificial
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/00000000-0000-0000-0000-000000000000/deploy-status)](https://app.netlify.com/sites/tu-sitio/deploys)  
 *Sitio web oficial de Novyxx — Transformando empresas mediante inteligencia artificial ética, eficiente y accesible.*
 
 ---
@@ -79,3 +78,4 @@ El sitio está diseñado para comunicar claramente el valor, la visión y los se
    ```bash
    git clone https://github.com/tu-usuario/novyxx-web.git
    cd novyxx-web
+
