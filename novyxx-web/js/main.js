@@ -177,22 +177,26 @@ let scene, camera, renderer, particles = [];
         }
         function initSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+
+                if (href === '#') return;
+
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        gsap.to(window, {
-                            duration: 1.2,
-                            scrollTo: {
-                                y: target,
-                                offsetY: 100
-                            },
-                            ease: "power2.out"
-                        });
+                    const target = document.querySelector(href);
+
+                if (target) {
+                    gsap.to(window, {
+                    duration: 1.2,
+                    scrollTo: { y: target, offsetY: 100 },
+                    ease: "power2.out"
+                    });
                     }
                 });
             });
         }
+
+
         function openModal(type) {
             const modals = {
                 'privacy': 'privacyModal',
@@ -215,13 +219,11 @@ let scene, camera, renderer, particles = [];
             }
         }
         function showCookieBanner() {
-            const banner = document.getElementById('cookieBanner');
+            const banner = document.querySelector('.cookie-banner');
             banner.style.display = 'flex';
-            gsap.fromTo(banner,
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-            );
+            gsap.to(banner, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
         }
+
         window.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 closeModal(event.target.id);
@@ -289,3 +291,73 @@ let scene, camera, renderer, particles = [];
                 }
             });
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const cookieButtons = document.querySelectorAll('[onclick="showCookieBanner()"]');
+
+        cookieButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const banner = document.getElementById('cookieBanner');
+                if (!banner) return;
+                banner.style.display = 'flex';
+                banner.style.opacity = '1';
+                banner.style.transform = 'translateY(0)';
+                try {
+                    gsap.fromTo(
+                        banner,
+                        { y: 50, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
+                    );
+                    } catch {
+                    console.warn('GSAP no disponible, banner mostrado sin animación');
+                    }
+                });
+            });
+        });
+                // =========================
+        // GESTIÓN DE COOKIES EN POLÍTICA
+        // =========================
+        document.addEventListener('DOMContentLoaded', () => {
+        const cookieForm = document.getElementById('cookieForm');
+        if (!cookieForm) return; // si no estamos en el modal de cookies, no hace nada
+
+        const analytics = cookieForm.querySelector('input[name="analytics"]');
+        const marketing = cookieForm.querySelector('input[name="marketing"]');
+        const savedPrefs = JSON.parse(localStorage.getItem('novyxx_cookie_consent'));
+
+        if (savedPrefs) {
+            analytics.checked = savedPrefs.analytics;
+            marketing.checked = savedPrefs.marketing;
+        }
+
+        document.getElementById('acceptAll').addEventListener('click', () => {
+            analytics.checked = true;
+            marketing.checked = true;
+            savePrefs(true, true);
+        });
+
+        document.getElementById('rejectAll').addEventListener('click', () => {
+            analytics.checked = false;
+            marketing.checked = false;
+            savePrefs(false, false);
+        });
+
+        cookieForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            savePrefs(analytics.checked, marketing.checked);
+        });
+
+        function savePrefs(analyticsVal, marketingVal) {
+            localStorage.setItem(
+            'novyxx_cookie_consent',
+            JSON.stringify({
+                analytics: analyticsVal,
+                marketing: marketingVal,
+                timestamp: Date.now()
+            })
+            );
+            alert('Preferencias de cookies guardadas correctamente.');
+        }
+        });
+
