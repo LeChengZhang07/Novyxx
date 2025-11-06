@@ -149,7 +149,6 @@
                         <li><a href="#" onclick="openModal('cookies')"><i class="fas fa-chevron-right"></i> Política de Cookies</a></li>
                         <li><a href="#" onclick="openModal('terms')"><i class="fas fa-chevron-right"></i> Términos y Condiciones</a></li>
                         <li><a href="#" onclick="openModal('ethics')"><i class="fas fa-chevron-right"></i> Uso Ético de la IA</a></li>
-                        <li><a href="#" onclick="showCookieBanner()"><i class="fas fa-chevron-right"></i>Gestionar cookies</a></li>
                     </ul>
                 </div>
                 <div class="footer-section footer-contact">
@@ -277,6 +276,33 @@
                     Esta Política de Cookies puede actualizarse en función de cambios técnicos o legales. 
                     Publicaremos la versión más reciente indicando la fecha de actualización.
                 </p>
+                <hr style="margin: 2rem 0; border-color: var(--border);">
+
+                <section class="cookie-preferences">
+                <h3>Configura tus preferencias</h3>
+                <p>Puedes decidir qué tipos de cookies permites en este sitio:</p>
+
+                <form id="cookieForm">
+                    <label class="cookie-option">
+                    <input type="checkbox" name="necessary" checked disabled>
+                    <span>Cookies necesarias (siempre activas)</span>
+                </label>
+                <label class="cookie-option">
+                    <input type="checkbox" name="analytics">
+                    <span>Cookies de análisis</span>
+                </label>
+                <label class="cookie-option">
+                    <input type="checkbox" name="marketing">
+                    <span>Cookies de marketing</span>
+                </label>
+
+                    <div class="cookie-buttons">
+                        <button type="button" id="acceptAll" class="btn btn-accept">Aceptar todas</button>
+                        <button type="button" id="rejectAll" class="btn btn-manage">Rechazar todas</button>
+                        <button type="submit" class="btn btn-accept">Guardar configuración</button>
+                    </div>
+                </form>
+                </section>
             </div>
         </div>
     </div>
@@ -331,17 +357,6 @@
                 <h3>Contacto</h3>
                 <p>Si tienes preguntas sobre cómo aplicamos la IA en un proyecto concreto, contacta con nosotros en <a href="mailto:contact.lechengzhang@gmail.com" style="color: #2E6BB0;">contact.lechengzhang@gmail.com</a>.</p>
             </div>
-        </div>
-    </div>
-    <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-text">
-            Usamos cookies propias y de terceros para mejorar la experiencia, realizar análisis estadístico y facilitar funcionalidades. 
-            Puedes aceptar todas, rechazarlas o configurarlas según tus preferencias.
-        </div>
-        <div class="cookie-actions">
-            <button class="btn btn-manage" onclick="openModal('cookies')">Configurar</button>
-            <button class="btn btn-accept" onclick="acceptCookies()">Aceptar</button>
-            <button class="btn btn-manage" onclick="rejectCookies()">Rechazar</button>
         </div>
     </div>
     <div id="cookieBanner" class="cookie-banner">
