@@ -1,80 +1,61 @@
 # 🌐 Novyxx — Agencia de Automatización con Inteligencia Artificial
 
-*Sitio web oficial de Novyxx — Transformando empresas mediante inteligencia artificial ética, eficiente y accesible.*
+[![Netlify Status](https://api.netlify.com/api/v1/badges/00000000-0000-0000-0000-000000000000/deploy-status)](https://novyxx.netlify.app)  
+[![Live Demo](https://img.shields.io/badge/🚀_Ver_en_Vivo-3b82f6?style=for-the-badge&logo=netlify&logoColor=white)](https://novyxx.netlify.app)
+
+> **Transformamos empresas mediante soluciones inteligentes, éticas y eficientes con Inteligencia Artificial.**
+
+Este es el código fuente del **sitio web oficial de [Novyxx](https://novyxx.netlify.app)**, una agencia y escuela especializada en:
+- 🤖 Automatización de procesos empresariales con IA  
+- 📊 Consultoría en implementación responsable de inteligencia artificial  
+- 🎓 Formación técnica y estratégica en herramientas de IA
+
+Diseñado para impresionar, informar y cumplir con los más altos estándares técnicos, de accesibilidad y cumplimiento legal (RGPD/LOPDGDD).
 
 ---
 
-## 🎯 Propósito
+## 🎨 Vista previa
 
-Este repositorio contiene el **sitio web institucional estático** de **Novyxx**, una agencia y escuela especializada en:
+![Novyxx Website Preview](https://github.com/LeChengZhang07/Novyxx/raw/main/screenshot.png)
 
-- Automatización de procesos empresariales con IA
-- Consultoría en implementación responsable de inteligencia artificial
-- Formación técnica y estratégica en herramientas de IA
-
-El sitio está diseñado para comunicar claramente el valor, la visión y los servicios de la marca, cumpliendo con normativas europeas de privacidad y accesibilidad.
+> *¿No ves la imagen? [Visita el sitio en vivo](https://novyxx.netlify.app)*
 
 ---
 
-## 🛠️ Características Técnicas
+## ✨ Características técnicas
 
-### ✅ Rendimiento y Experiencia de Usuario
-- **Single-page application (SPA) estática** sin dependencias de frameworks
-- **Animaciones fluidas** con [GSAP](https://greensock.com/gsap/) y ScrollTrigger
-- **Efectos 3D en tiempo real** con [Three.js](https://threejs.org/)
-- **Diseño responsive** optimizado para móvil, tablet y escritorio
-- **Carga diferida implícita** (sin JS pesado innecesario)
-- **Sin build required** — listo para desplegar tal cual
-
-### 📱 Accesibilidad y UX
-- Navegación por teclado (soporte `ESC` para cerrar modales)
-- Etiquetas ARIA en modales legales
-- Colores con suficiente contraste (WCAG compliant)
-- Texto legible con tipografía sistemática (`Inter`)
-
-### 🛡️ Cumplimiento Legal (RGPD/LOPDGDD)
-- Política de cookies con gestión activa de consentimiento
-- Modales para:  
-  - Aviso Legal  
-  - Política de Privacidad  
-  - Términos y Condiciones  
-  - Uso Ético de la IA  
-- Almacenamiento de preferencias en `localStorage`
-- Sin cookies de terceros sin consentimiento explícito
-
-### 🌍 SEO y Buenas Prácticas
-- Metadatos SEO completos (`description`, `keywords`, `og:title` implícito)
-- Estructura semántica HTML5 (`<header>`, `<section>`, `<footer>`)
-- Títulos jerárquicos correctos (`h1` → `h2` → `h3`)
-- Enlaces internos anclados con scroll suave
+- **Experiencia inmersiva**: Escena 3D interactiva con **Three.js** (partículas dinámicas que reaccionan al cursor)
+- **Animaciones cinematográficas**: Entradas escalonadas y scroll suave con **GSAP + ScrollTrigger**
+- **Diseño moderno y oscuro**: Glassmorphism, neón sutil, rejilla de fondo y tipografía profesional (`Inter`)
+- **Totalmente responsive**: Móvil, tablet y escritorio
+- **Cumplimiento legal integrado**:  
+  - Banner de cookies con gestión de consentimiento  
+  - Modales para: Aviso Legal, Política de Privacidad, Términos, Uso Ético de la IA
+- **Sin frameworks ni build**: HTML5 + CSS3 + JavaScript puro → **carga instantánea**
+- **Accesible**: Navegación por teclado (`ESC` para cerrar modales), contraste WCAG, ARIA
+- **Optimizado para SEO**: Metadatos, estructura semántica y anclajes internos
 
 ---
 
-## 📦 Tecnologías Utilizadas
+## 🧰 Tecnologías
 
 | Capa | Tecnología |
 |------|-----------|
-| **Markup** | HTML5 |
-| **Estilos** | CSS3 puro (sin preprocesadores), variables CSS, `@import` para fuentes |
-| **Interactividad** | JavaScript Vanilla (ES6+) |
-| **Animaciones** | GSAP 3 + ScrollTrigger + ScrollToPlugin |
-| **3D / WebGL** | Three.js r128 |
+| **Núcleo** | HTML5, CSS3, JavaScript (Vanilla ES6+) |
+| **3D / WebGL** | [Three.js r128](https://threejs.org/) |
+| **Animaciones** | [GSAP 3](https://greensock.com/gsap/) + ScrollTrigger + ScrollToPlugin |
 | **Fuentes** | Google Fonts (`Inter`) |
 | **Íconos** | Font Awesome 6.5 |
-| **Hosting** | Netlify (optimizado para sitios estáticos) |
+| **CDN** | Cloudflare, jsDelivr |
+| **Hosting** | [Netlify](https://netlify.com) |
 
-> ⚠️ **Sin frameworks pesados** (React, Vue, etc.) → carga instantánea y rendimiento óptimo.
+> ⚡ **0% frameworks** → máximo rendimiento, mínimo overhead.
 
 ---
 
-## ▶️ Instrucciones de Desarrollo
+## 🚀 Cómo ejecutar localmente
 
-### Requisitos previos
-- Editor de código (recomendado: [VS Code](https://code.visualstudio.com/))
-- Extensión **[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)**
-
-### Ejecución local
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/novyxx-web.git
-   cd novyxx-web
+   git clone https://github.com/LeChengZhang07/Novyxx.git
+   cd Novyxx
