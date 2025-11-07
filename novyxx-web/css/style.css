@@ -210,7 +210,7 @@
         }
         /* Sección Servicios */
         .services {
-            padding: 10rem 0 8rem;
+            padding: 3rem 0 8rem;
             position: relative;
         }
         .section-title {
@@ -295,7 +295,7 @@
         }
         /* Sección About */
         .about {
-            padding: 10rem 0 8rem;
+            padding: 5rem 0 8rem;
             background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 45%), rgba(15, 23, 42, 0.5);
             position: relative;
         }
@@ -383,7 +383,7 @@
         }
         /* Sección Contacto */
         .contact {
-            padding: 10rem 0 8rem;
+            padding: 3rem 0 8rem;
             position: relative;
         }
         .contact-grid {
@@ -753,28 +753,27 @@
             }
         }
         /* ==== FIX VISIBILIDAD EN MÓVIL ==== */
-#webgl-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* Asegura que quede detrás del texto */
-}
+        #webgl-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0; /* Asegura que quede detrás del texto */
+        }
 
-.hero-content, 
-.hero, 
-header {
-  position: relative;
-  z-index: 2; /* Mantiene texto y header encima del canvas */
-}
+        .hero-content, 
+        .hero, 
+        header {
+        position: relative;
+        z-index: 2; /* Mantiene texto y header encima del canvas */
+        }
 
-@media (max-width: 768px) {
-  #webgl-canvas {
-    height: 100vh;
-  }
-}
-
+        @media (max-width: 768px) {
+        #webgl-canvas {
+            height: 100vh;
+        }
+        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -792,9 +791,7 @@ header {
             background: var(--accent);
 
         }
-        /* =======================
-        CONFIGURACIÓN DE COOKIES
-        ======================= */
+        /* CONFIGURACIÓN DE COOKIES */
         .cookie-preferences {
             background: var(--card-bg);
             padding: 2rem;
