@@ -1,5 +1,7 @@
 # 🌐 Novyxx — Agencia de Automatización con Inteligencia Artificial  
 
+---
+
 ## 💡 Transformamos empresas con Inteligencia Artificial  
 
 **Novyxx** es una **agencia y escuela especializada** en soluciones inteligentes, éticas y eficientes basadas en **IA**.  
