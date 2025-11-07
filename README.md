@@ -67,4 +67,4 @@ Diseñado para **impresionar, informar y educar**, el sitio web de Novyxx cumple
 ```bash
 git clone https://github.com/LeChengZhang07/Novyxx.git
 cd Novyxx
-# Abre index.html directamente o usa un servidor local
+
