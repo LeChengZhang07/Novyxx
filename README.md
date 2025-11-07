@@ -1,8 +1,5 @@
 # 🌐 Novyxx — Agencia de Automatización con Inteligencia Artificial  
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/novyxx/deploys)  
-🎯 [**Ver demo en vivo**](https://novyxx.netlify.app)  
-
 ---
 
 ## 💡 Transformamos empresas con Inteligencia Artificial  
